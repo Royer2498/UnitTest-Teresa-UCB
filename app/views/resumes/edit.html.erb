@@ -1,0 +1,474 @@
+<h1>Curriculum Vitae</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading"><div class="panel-title"><h3>Formacion Academica </h3></div></div>
+    <div class="panel-body">
+    <% if @educations.size >0%>
+    <ul class="list-group">
+    <% @educations.each do |education| %>
+      <li class="list-group-item">
+        <div>
+          <h4>  <strong><%=education.title%>&emsp;</strong><button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,education]%></button></h4>
+          <%=education.school_name%>&nbsp;
+          <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+        </div>
+      </li>
+        <%end%>
+     <%end%>
+   </ul>
+   </div>
+<div class="panel-footer well">
+<%= form_for :education, url: '/education/new' do |f| %>
+  <div  class="field col col-xs-3">
+    <%= f.label :Titulo_academico %>:
+    <%= f.text_field :title%>
+  </div>
+
+    <div class="field col-xs-3">
+    <%= f.label :Universidad %>:
+    <%= f.text_field :school_name%>
+  </div>
+  <div class="field col-xs-4">
+  <%= f.label :descripcion %>:
+  <%= f.text_area :description%>
+</div><br><br>
+  <div class="field col-xs-3">
+    <%= f.label :Fecha_ingreso %>:
+      <%= f.date_select :start_date,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+
+    <div class="field col-xs-3">
+    <%= f.label :fecha_egreso %>:
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+  <div class="actions col-xs-3">
+    <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+  </div>
+  <br><br><br><br><br>
+<% end %>
+</div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h3>Experiencia Profesional </h3>
+    </div>
+  </div>
+  <div class="panel-body">
+        <% if @experiences.size >0%>
+            <ul class="list-group">
+              <% @experiences.each do |experience| %>
+              <li class="list-group-item">
+              <div>
+                  <p>
+                  <h5><strong><%=experience.company_name%></strong></h5>
+                  <%=experience.job_title%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,experience]%></button><br>
+                  <%=experience.start_job_date%>&emsp; - &emsp;
+                  <%=experience.finish_job_date%>
+                  <div>RANGO SALARIAL: <%=experience.salary_range%></div>
+                </p>
+            </div>
+          </li>
+        <%end%>
+     <%end%>
+   </ul>
+   </div>
+ </div>
+ 
+ <div class="panel-footer well">
+<%= form_for :experience, url: '/experience/new' do |f| %>
+  <div class="field">
+    <%= f.label :cargo_profesional %><br />
+    <%= f.text_field :job_title%>
+  </div>
+
+    <div class="field">
+    <%= f.label :empresa %>
+    <%= f.text_field :company_name%>
+  </div>
+  <div class="field">
+    <%= f.label :actividades_a_cargo %><br />
+    <%= f.text_field :job_description%>
+  </div>
+  <div >
+    <input type="checkbox" id="checkbox" name="checkbox">Desea agregar una persona de referencia
+  </div>
+  <div id="rest" style="display:none;">
+    <div class="field">
+      <%= f.label :Persona_de_Referencia %>
+      <%= f.text_field :referential%>
+    </div>
+    <div class="field">
+      <%= f.label :numero_de_referencia %>
+      <%= f.number_field :referential_number%>
+    </div>
+  </div>
+  <div class="pull-right">
+      ESTA INFORMACION NO ES PUBLICA
+      <%= f.label :rango_salarial %>
+      <%= f.select(:salary_range, options_for_select(Experience.salary_range)) %>
+    </div>
+  <div class="field">
+    <%= f.label :Fecha_ingreso %>
+    <%= f.date_select :start_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+    <div class="field" id="date" style="display:none;">
+    <%= f.label :fecha_salida %>
+    <%= f.date_select :end_date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+    <div class="field">
+        <%=f.label :si_aun_sigue_por_favor_deje_marcada_esta_casilla%>
+        <input type="checkbox" id="checkboxDate" name="until_now", checked="true">
+    </div>
+      <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+
+
+  <div class="actions">
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h2>Cursos y Seminarios </h2>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% if @courses.size >0%>
+      <ul class="list-group">
+        <h5><% @courses.each do |course| %></h5>
+          <li class="list-group-item">
+              <div>
+                  <p>
+                    <strong><%=course.date.year%></strong>&emsp;
+                    <%=course.name%>&emsp;
+                    <%=course.given%>&emsp;
+                    <%=course.institution%>&emsp;
+                    <%=course.workload%> Hrs.
+                    &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,course]%></button>
+                  </p>
+              </div>
+          </li>
+          <%end%>
+        <%end%>
+      </ul>
+    </div>
+      <div class="panel-footer well">
+  <%= form_for :course, url: '/course/new' do |f| %>
+    <div class="field">
+      <%= f.label :nombre_del_curso_o_seminario %><br />
+      <%= f.text_field :name%>
+    </div>
+    <div class="field">
+      <%= f.label :fecha %>
+      <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+    </div>
+    <div>
+      <%=f.label :participe_como%>
+
+      <%= f.select(:given, options_for_select(Course.participations)) %>
+    </div>
+    <div class="field">
+      <%= f.label :carga_horaria %><br />
+      <%= f.number_field :workload%> Hrs.
+    </div>
+    <div class="field">
+      <%= f.label :institucion %><br />
+      <%= f.text_field :institution%>
+    </div>
+        <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+    <div class="actions">
+      <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+    </div>
+    <% end %>
+
+  </div>
+</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Publicaciones </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @publications.size >0%>
+    <ul class="list-group">
+    <h5><% @publications.each do |pub| %></h5>
+      <li class="list-group-item">
+        <div>
+                <p>
+                  <strong><%=pub.date.year%></strong>&emsp;<%=pub.name%>&emsp;<%=pub.publicationType%><button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,pub]%></button><br>
+                  <%=pub.location%>
+                </p>
+            </div>
+      </li>
+       <%end%>
+     <%end%>
+    </ul>
+</div>
+
+  <div class="panel-footer well">
+    <%= form_for :publication, url: '/publication/new' do |f| %>
+  <div class="field">
+    <%= f.label :tipo_de_publicacion %>
+    <%= f.select( :publicationType, @publicationTypes.map {|a| [a]}) -%>
+  </div>
+    <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name%>
+  </div>
+     <div class="field">
+    <%= f.label :lugar %><br />
+    <%= f.text_field :location%>
+  </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+  </div>
+<% end %>
+  </div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Meritos </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @merits.size >0%>
+    <ul class="list-group">
+    <h5><% @merits.each do |merit| %></h5>
+      <li class="list-group-item">
+        <div>
+                <p>
+                  <strong><%=merit.date.year%></strong>&emsp;<%=merit.name%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,merit]%></button><br>
+                </p>
+            </div>
+      </li>
+       <%end%>
+     <%end%>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :merit, url: '/merit/new' do |f| %>
+    <div class="field">
+    <%= f.label :Merito %><br />
+    <%= f.text_field :name%>
+    </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+  </div>
+<% end %>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Membresia </h2></div>
+  </div>
+
+  <div class="panel-body">
+  <% if @memberships.size >0%>
+    <ul class="list-group">
+    <h5><% @memberships.each do |member| %></h5>
+      <li class="list-group-item">
+       <div>
+                <p>
+                  <strong><%=member.name%> en <%=member.organization%>&emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,member]%></button></strong><br>
+                  desde <%=member.date.year%>&emsp;<br>
+                </p>
+            </div>
+      </li>
+      <%end%>
+     <%end%>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :membership, url: '/member/new' do |f| %>
+    <div class="field">
+    <%= f.label :titulo %><br />
+    <%= f.text_field :name%>
+    </div>   <div class="field">
+    <%= f.label :comunidad %><br />
+    <%= f.text_field :organization%>
+    </div>
+    <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :date ,:start_year  =>1990, :end_year=>Time.now.year%>
+  </div>
+  <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+  <div class="actions">
+    <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+  </div>
+<% end %>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Idiomas </h2></div>
+  </div>
+
+  <div class="panel-body">
+    <% if @languages.size >0%>
+    <ul class="list-group">
+      <h5><% @languages.each do |language| %></h5>
+      <li class="list-group-item">
+        <div>
+            <p>
+              <strong><%=language.name%></strong>&emsp;
+              <%=language.level%>&emsp;
+              <%=language.skill%>
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,language]%></button>
+            </p>
+        </div>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :language, url: '/language/new' do |f| %>
+      <div class="field">
+        <%= f.label :nombre %><br />
+        <%= f.text_field :name%>
+      </div>
+      <div>
+        <%=f.label :nivel%>
+
+        <%= f.select(:level, options_for_select(Language.levels)) %>
+      </div>
+      <div>
+        <%=f.label :habilidades%>
+
+        <%= f.select(:skill, options_for_select(Language.skills)) %>
+      </div>
+          <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+
+      <div class="actions">
+        <%= f.submit "Guardar" , :class =>"btn btn-primary"%>
+      </div>
+      <% end %>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><h2> Personas de referencia</h2></div>
+  </div>
+  <div class="panel-body">
+    <% if @referentials.size >0%>
+    <ul class="list-group">
+      <h5><% @referentials.each do |refer| %></h5>
+        <li class="list-group-item">
+          <div>
+            <p>
+              <strong><%=refer.name%></strong>
+              &emsp;<button class="btn btn-warning btn-sm pull-right"><%=link_to "Editar", [:edit,refer]%></button><br>
+              <%=refer.number%>&emsp;<%=refer.institution%>
+            </p>
+          </div>
+        </li>
+        <%end%>
+     <%end%>
+    </ul>
+  </div>
+
+  <div class="panel-footer well">
+    <%= form_for :referential, url: '/referential/new' do |f| %>
+    <div class="field">
+      <%= f.label :nombre_de_la_persona_de_referencia %><br />
+      <%= f.text_field :name %>
+    </div>
+      <div class="field">
+      <%= f.label :institucion %><br />
+      <%= f.text_field :institution%>
+    </div>
+      <div class="field">
+      <%= f.label :numero_de_referencia %><br />
+      <%= f.number_field :number%>
+    </div>
+    <%= f.hidden_field :resume_id, :value => current_user.resume.id%>
+    <div class="actions">
+      <%= f.submit "Guardar", :class =>"btn btn-primary" %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.onload = function() {
+ var checkbox2 = document.getElementById('checkboxDate');
+ if (checkbox2.checked) {
+ document.getElementById("date").style.display = "none";
+ } else {
+ document.getElementById("date").style.display = "block";
+ }
+};
+
+$('#checkboxDate').click(function() {
+  $('#date')[this.checked ? "hide" : "show"]();
+});
+</script>
+
+
+
+
+
+
+
+
+<script>
+window.onload = function() {
+ var checkbox = document.getElementById('checkbox');
+ if (checkbox.checked) {
+ document.getElementById("rest").style.display = "block";
+ } else {
+ document.getElementById("rest").style.display = "none";
+ }
+};
+
+$('#checkbox').click(function() {
+  $('#rest')[this.checked ? "show" : "hide"]();
+});
+</script>

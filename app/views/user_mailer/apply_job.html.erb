@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teresa UCB</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hola, <%= @user.name %></h1>
+    <p>
+      Hay una persona que ha respondido a tu publicacion, la misma notificacion se te ha sido enviada a tu cuenta de Teresa.<br>
+
+      <div class="container">
+            <% @post.body.split("\n").each do |line|  %>
+              <%=line%><br>
+            <%end%>
+      </div>
+
+
+      <div class="container">
+      <div ><h2><%=@sender.name%> <%=@sender.last_name%> </h2></div>
+        <div class="container-body ">
+         <%if !@sender.is_company?%>
+          <div class="container">
+          <h2>Informacion Personal</h2>
+          <div class="container">
+            <strong>Direccion: </strong><%=@personal_info.address%><br>
+            <strong>Fecha de Nacimiento: </strong><%=@personal_info.translate_birthdate_to_string%> <br>
+            <strong>Fijo: </strong><%=@personal_info.phone%><br>
+            <strong>Movil: </strong><%=@personal_info.cellphone%><br>
+            <strong>e-mail: </strong><%=@sender.email%><br>
+          </div>
+        </div>
+        <div class="container">
+          <% if @educations.size >0%>
+          <h2>Formacion Academica </h2>
+          <div class="container">
+          <h5><% @educations.each do |education| %></h5>
+                  <div>
+                      <p>
+                        <h5><strong><%=education.title%></strong></h5>
+                        <%=education.school_name%>&nbsp;
+                        <%=education.start_date.year%>&emsp; - &emsp; <%=education.end_date.year%>
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+        </div>
+      </div>
+      <%end%>
+      </div>
+        <div class="container">
+          <% if @experiences.size >0%>
+          <h2>Experiencia Profesional </h2>
+
+          <div class="container">
+          <h5><% @experiences.each do |experience| %></h5>
+                  <div>
+                      <p>
+                        <h5><strong><%=experience.company_name%></strong></h5>
+                        <%=experience.job_title%><br>
+                        <%=experience.start_job_date%>&emsp; - &emsp;
+                        <%=experience.finish_job_date%>&emsp;
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+         </div>
+       </div>
+      <div class="container">            
+      <% if @courses.size >0%>
+      <h2>Cursos y Seminarios </h2>
+      <div class="container">
+          <h5><% @courses.each do |course| %></h5>
+                  <div>
+                      <p>
+                        <strong><%=course.date.year%></strong>&emsp;
+                        <%=course.name%>&emsp;
+                        <%=course.given%>&emsp;
+                        <%=course.institution%>&emsp;
+                        <%=course.workload%>&emsp; Hrs.
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+         </div>
+       </div>
+       <div class="container">              
+       <% if @knowledges.size >0%>
+           <h2> Conocimientos</h2>
+
+           <div class="container">
+          <h5><% @knowledges.each do |know| %></h5>
+                  <div>
+                      <p>
+                        <strong><%=know.area%></strong><br>
+                        <%=know.description%>
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+         </div>
+       </div>
+       <div class="container">
+          <% if @publications.size >0%>
+           <h2> Publicaciones </h2>
+
+           <div class="container">
+          <h5><% @publications.each do |pub| %></h5>
+                  <div>
+                      <p>
+                        <strong><%=pub.publicationType%></strong><br>
+                        <%=pub.date.year%>&emsp;<strong><%=pub.name%></strong><br>
+                        <%=pub.location%>
+
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+         </div>
+       </div>
+       <div class="container">
+          <% if @merits.size >0%>
+           <h2> Meritos </h2>
+           <div class="container">
+
+          <h5><% @merits.each do |merit| %></h5>
+                  <div>
+                      <p>
+                        <strong><%=merit.date.year%></strong>&emsp;<%=merit.name%><br>
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+         </div>
+       </div>
+       <div class="container">
+      <% if @memberships.size >0%>
+      <h2> Membresia </h2>
+      <div class="container">
+
+          <h5><% @memberships.each do |member| %></h5>
+                  <div>
+                      <p>
+                        <strong><%=member.name%> en <%=member.organization%></strong><br>
+                        desde <%=member.date.year%>&emsp;<br>
+                      </p>
+                  </div>
+              <%end%>
+           <%end%>
+      </div>
+      </div>
+      <div class="container">
+      <% if @languages.size >0%>
+       <h2> Idiomas </h2>
+       <div class="container">
+           <h5><% @languages.each do |language| %></h5>
+                   <div>
+                       <p>
+                         <strong><%=language.name%> Nivel:  <%=language.level%> Destreza: <%=language.skill%></strong><br>
+                       </p>
+                   </div>
+               <%end%>
+            <%end%>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </p>
+      Si gustas contactarte con esta persona, en el sistema estan los datos del contacto.
+    <p>
+      Gracias por ser parte de Teresa y esperamos saques provecho de ella.
+    </p>
+    </body>
+</html>

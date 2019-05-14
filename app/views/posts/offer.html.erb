@@ -1,0 +1,90 @@
+<style>
+form {
+  border-radius: 5px;
+  max-width:700px;
+  width:100%;
+  margin: 5% auto;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+h1 {
+  text-align:center;
+  color: #666;
+  text-shadow: 1px 1px 0px #FFF;
+  margin:50px 0px 0px 0px
+}
+input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  float: left;
+  padding: 0px 15px;
+}
+</style>
+<h1>Formulario de Oferta de Trabajo</h1>
+   <div class="info"><a href="" target="_blank"><p> Busca <em class="fa fa-search"></em> lo que necesites </p></a></div>
+   	<%= form_for :post, url: '/resultados/busqueda' do |f| %>
+    <%= f.hidden_field :user_id,:value => current_user.id%>
+	  <h1>Llena los siguientes campos, como requisito para el puesto laboral :</h1>
+    <div class="contentform">
+  	  <div id="sendmessage"> La oferta fue publicada exitosamente!. Gracias. </div>
+    	<div class="leftcontact">
+			 <div class="form-group">
+			  <p>Titulo academico<span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-male"></em></span>
+        <%=f.text_field :titulo%>
+        <div class="validation"></div>
+       </div>
+      <div class="form-group">
+        <p>Post grado <span>*</span></p>
+        <span class="icon-case"><em class="fa fa-user"></em></span>
+        <%=f.text_field :post_grado%>
+        <div class="validation"></div>
+			</div>
+			<div class="form-group">
+			  <p>Horas de Trabajo <span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-clock-o"></em></span>
+        <%=f.number_field :horas%>
+        <div class="validation"></div>
+			</div>
+      <div class="form-group">
+        <p>Experiencia en <span>*</span></p>
+        <span class="icon-case"><em class="fa fa-comment-o"></em></span>
+        <%=f.text_field :experiencia%>
+        <div class="validation"></div>
+      </div>
+	   </div>
+	   <div class="rightcontact">
+			<div class="form-group">
+			  <p>Ciudad <span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-building-o"></em></span>
+        <%=f.text_field :ciudad %>
+        <div class="validation"></div>
+			</div>
+			<div class="form-group">
+			  <p>Idiomas<span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-phone"></em></span>
+        <%=f.text_field :idiomas%>
+				<div class="validation"></div>
+			</div>
+			<div class="form-group">
+			  <p>Cargo <span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-info"></em></span>
+        <%=f.text_field :cargo%>
+        <div class="validation"></div>
+			</div>
+
+			<div class="form-group">
+			  <p>Habilidades <span>*</span></p>
+			  <span class="icon-case"><em class="fa fa-comments-o"></em></span>
+        <%=f.text_field :habilidades%>
+        <div class="validation"></div>
+			</div>
+	   </div>
+	  </div>
+    <button type="submit" class="bouton-contact">Send</button>
+
+<%end%>

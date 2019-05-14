@@ -1,0 +1,109 @@
+<h2>Editar Perfil </h2>
+<%if (current_user.is_company?)%>
+<h3>Informacion Empresarial</h3>
+<%= link_to "Atras", :back %>
+<%= form_for :company_information, url: '/company/update' do |f| %>
+  <div class="field">
+    <%= f.label :Direccion %><br />
+    <%= f.text_field :address%>
+  </div>
+  <div class="field">
+    <%= f.label :correo_de_contacto %><br />
+    <%= f.email_field :contact_email, autofocus: true %>  </div>
+    <div class="field">
+    <%= f.label :nombre_de_contacto %><br />
+    <%= f.text_field :contact_name %>  </div>
+    <div class="field">
+    <%= f.label :Telefono_Fijo %>
+    <%= f.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :nit %>
+    <%= f.number_field :nit %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_field :description %><br>
+  </div>
+      <%= f.hidden_field :user_id, :value => current_user.id%>
+      <%=f.hidden_field :id, :value => current_user.company_information.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
+<%else%>
+<h3>Informacion Personal</h3>
+<%= link_to "Atras", :back %>
+<%= form_for :personal_information, url: '/personal/update' do |f| %>
+  <div class="field">
+    <%= f.label :Direccion %><br />
+    <%= f.text_field :address%>
+  </div>
+  <div class="field">
+    <%= f.label :Fecha_Nacimiento %><br />
+    <%= f.date_select :birthdate,:start_year=> 1970,:end_year=>Time.now.year-10%>
+  </div>
+    <div class="field">
+    <%= f.label :Telefono_Fijo %>
+    <%= f.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :celular %>
+    <%= f.number_field :cellphone %>
+  </div>
+      <%= f.hidden_field :user_id, :value => current_user.id%>
+      <%=f.hidden_field :id, :value => current_user.personal_information.id%>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>
+<%end%>
+<br><br>
+<h3>Datos de la cuenta</h3>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :name%>
+  </div>
+  <div class="field">
+    <%= f.label :apellido %><br />
+    <%= f.text_field :last_name%>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :contraseña %> <em>(dejelo vacio si no va a cambiarlo)</em><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> caracteres minimo</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmacion_contraseña %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contraseña_actual %> <em>(es obligatorio ingresar la contraseña para cambiar los datos)</em><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Actualizar" %>
+  </div>
+<% end %>
+
+<h3>Eliminar mi cuenta</h3>
+
+<p>Ya no quieres ser parte de nuestra red? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro?" }, method: :delete %></p>
