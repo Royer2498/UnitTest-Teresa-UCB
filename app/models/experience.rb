@@ -49,11 +49,11 @@ class Experience
    			"Diciembre"
 		end
    	end
-		def user
-			resume=self.resume
-			user=resume.user
-		end
-      def self.salary_range
-         ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+"]
-      end
+	def user
+		resume=self.resume
+		user=resume.user
+	end
+    def salary_range
+        ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+"]
+    end
 end

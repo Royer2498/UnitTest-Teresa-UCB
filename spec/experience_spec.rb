@@ -110,5 +110,9 @@ describe 'Experience' do
     expect(experience.mes(12)).to eq "Diciembre" 
   end
 
+  it "El metodo salary_range deberia devolver un vector con los rangos de los salarios" do
+    experience = Experience.new
+    expect(experience.salary_range).to eq ["0-3000","3001-6000","6001-9000","9001-14000","14000-20000","20000+"] 
+  end
 
 end 
