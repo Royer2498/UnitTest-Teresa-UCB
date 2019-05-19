@@ -1,8 +1,8 @@
 class Language 
-  def self.skills
+  def skills
     ["Lectura y Comprension","Escritura","Habla"]
   end
-  def self.levels
+  def levels
     ["Basico","Regular","Avanzado"]
   end
   def user
