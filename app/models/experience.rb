@@ -1,4 +1,4 @@
-class Experience 
+class Experience
 	def validate_date
 		start_date<end_date&& start_date<Time.now
 	end

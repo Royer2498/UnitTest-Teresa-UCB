@@ -2,7 +2,7 @@ class Course
 	def validate_date
 		date<Time.now
 	end
-	def orador
+	def orador(string given)
 		if given == "Participante"
 			"Participante"
 		end
