@@ -15,7 +15,7 @@ class Experience
    			literal(end_date)
    		end
    	end
-   	def start_job_date
+   	def start_job_date(start_date)
    		literal(start_date)
    	end
    	def literal(fecha)
