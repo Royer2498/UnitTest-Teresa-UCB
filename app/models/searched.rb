@@ -1,5 +1,4 @@
-class Searched < ActiveRecord::Base
-  before_create :no_self
+class Searched 
   validates_uniqueness_of :searched_by,:scope => :found
   def no_self
     searched_by!=found

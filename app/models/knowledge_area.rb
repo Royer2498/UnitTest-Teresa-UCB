@@ -1,2 +1,2 @@
-class KnowledgeArea < ActiveRecord::Base
+class KnowledgeArea 
 end

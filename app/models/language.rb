@@ -1,5 +1,4 @@
-class Language < ActiveRecord::Base
-  belongs_to :resume
+class Language 
   def self.skills
     ["Lectura y Comprension","Escritura","Habla"]
   end

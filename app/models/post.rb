@@ -1,8 +1,7 @@
-class Post < ActiveRecord::Base
+class Post 
   default_scope -> {order(created_at: :desc)}
   has_many :pictures
   has_many :notifications
-  belongs_to :user
 
   def job_offer(titulo,postgrado,horas,ciudad,idiomas,cargo,experiencia,habilidades,fijo,contact)
     resp="Estamos buscando personal, con las siguientes caracteristicas: \n"

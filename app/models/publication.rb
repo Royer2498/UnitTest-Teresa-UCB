@@ -1,5 +1,4 @@
-class Publication < ActiveRecord::Base
-  belongs_to :resume
+class Publication
   def user
     resume=self.resume
     user=resume.user

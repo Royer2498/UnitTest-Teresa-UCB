@@ -1,5 +1,4 @@
-class Follow < ActiveRecord::Base
-  before_create :no_self
+class Follow
   def no_self
     follower!=followed
   end

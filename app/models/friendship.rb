@@ -1,7 +1,5 @@
-class Friendship < ActiveRecord::Base
-	before_create :no_self
+class Friendship 
 	validates_uniqueness_of :one,:scope => :two
-	before_create :not_repeated
 	def no_self
 		one!=two
 	end

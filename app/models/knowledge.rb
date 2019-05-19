@@ -1,6 +1,4 @@
-class Knowledge < ActiveRecord::Base
-  belongs_to :knowledge_area
-  belongs_to :resume
+class Knowledge 
   def user
     resume=self.resume
     user=resume.user
