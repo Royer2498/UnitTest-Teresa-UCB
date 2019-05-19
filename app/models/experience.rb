@@ -1,8 +1,8 @@
 class Experience
-	def validate_date
+	def validate_date(start_date, end_date)
 		start_date<end_date&& start_date<Time.now
 	end
-	def isThisMonth
+	def isThisMonth(end_date)
 		end_date.month==Time.now.month
 	end
 	def isThisYear

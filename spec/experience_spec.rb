@@ -3,6 +3,38 @@ require 'spec_helper'
 
 describe 'Experience' do
 
+  it "El metodo validate_date deberia devolver true al recibir una fecha de inicio anterior a la fecha de fin" do
+    experience = Experience.new
+    expect(experience.validate_date(Time.parse('2019-05-16 15:40:36 -0400'), Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
+  end
+
+  it "El metodo validate_date deberia devolver false al recibir una fecha de inicio posterior a la fecha de fin" do
+    experience = Experience.new
+    expect(experience.validate_date(Time.parse('2019-05-19 15:40:36 -0400'), Time.parse('2019-05-16 15:40:36 -0400'))).to eq false 
+  end
+
+  it "El metodo isThisMonth deberia devolver true al recibir una fecha de fin perteneciente al mes actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
+  end
+  
+
+  it "El metodo isThisMonth deberia devolver false al recibir una fecha de fin que no pertene al mes actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-03-19 15:40:36 -0400'))).to eq false 
+  end
+
+  it "El metodo isThisYear deberia devolver true al recibir una fecha de fin perteneciente al anio actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
+  end
+  
+
+  it "El metodo isThisYear deberia devolver false al recibir una fecha de fin que no pertene al anio actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-03-18 15:40:36 -0400'))).to eq false 
+  end
+
   it "El metodo mes deberia devolver 'Enero' al recibir 1" do
     experience = Experience.new
     expect(experience.mes(1)).to eq "Enero" 
@@ -62,5 +94,6 @@ describe 'Experience' do
     experience = Experience.new
     expect(experience.mes(12)).to eq "Diciembre" 
   end
+
 
 end 
