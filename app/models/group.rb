@@ -1,11 +1,11 @@
 class Group 
-  has_many :group_managers
-  def members
-    self.group_managers.count
+
+  def members(group_managers)
+    return group_managers.count
   end
-  def my_members
+  def my_members(group_managers)
     users=[]
-    self.group_managers.each do |union|
+    group_managers.each do |union|
       users=users+[union.user]
     end
     users
