@@ -1,7 +1,7 @@
 require './app/models/course'
 require 'spec_helper'
 
-describe 'CourseTest' do
+describe 'Course' do
 
   it "El metodo orador deberia devolver 'Participante' para un participante" do
     course = Course.new
