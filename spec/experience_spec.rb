@@ -17,10 +17,22 @@ describe 'Experience' do
     experience = Experience.new
     expect(experience.isThisMonth(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
   end
+  
 
   it "El metodo isThisMonth deberia devolver false al recibir una fecha de fin que no pertene al mes actual" do
     experience = Experience.new
     expect(experience.isThisMonth(Time.parse('2019-03-19 15:40:36 -0400'))).to eq false 
+  end
+
+  it "El metodo isThisYear deberia devolver true al recibir una fecha de fin perteneciente al anio actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
+  end
+  
+
+  it "El metodo isThisYear deberia devolver false al recibir una fecha de fin que no pertene al anio actual" do
+    experience = Experience.new
+    expect(experience.isThisMonth(Time.parse('2019-03-18 15:40:36 -0400'))).to eq false 
   end
 
   it "El metodo mes deberia devolver 'Enero' al recibir 1" do
