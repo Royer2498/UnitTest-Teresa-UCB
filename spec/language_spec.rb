@@ -12,5 +12,4 @@ describe 'Post' do
     language = Language.new
     expect(language.levels).to eq ["Basico","Regular","Avanzado"]
   end
-
 end 
