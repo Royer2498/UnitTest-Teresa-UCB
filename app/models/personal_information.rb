@@ -1,7 +1,4 @@
-class PersonalInformation < ActiveRecord::Base
-  belongs_to :user
-  after_update :translate_birthdate_to_string
-  before_update :validate_date
+class PersonalInformation
   def validate_date
     birthdate<Time.now
   end

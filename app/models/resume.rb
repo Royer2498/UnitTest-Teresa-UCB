@@ -1,4 +1,4 @@
-class Resume < ActiveRecord::Base
+class Resume
 	belongs_to :user
 	has_many :experiences
 	has_many :educations

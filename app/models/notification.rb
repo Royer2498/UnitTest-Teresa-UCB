@@ -1,8 +1,5 @@
-class Notification < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :post
+class Notification
   validates :sender, presence: true
-  before_create :no_self
   def user_sender
   	User.find(self.sender)
   end
