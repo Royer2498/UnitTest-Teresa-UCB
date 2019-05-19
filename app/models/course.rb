@@ -2,18 +2,18 @@ class Course
 	def validate_date
 		date<Time.now
 	end
-	def orador(string given)
+	def orador(given)
 		if given == "Participante"
-			"Participante"
+			return "Participante"
 		end
 		if given == "Aprobacion"
-			"Aprobacion"
+			return "Aprobacion"
 		end
 		if given == "Expositor"
-			"Expositor"
+			return "Expositor"
 		end
 		if given == "Organizador"
-			"Organizador"
+			return "Organizador"
 		end
 	end
 	def self.participations
