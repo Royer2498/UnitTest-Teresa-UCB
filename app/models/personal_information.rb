@@ -16,9 +16,10 @@ class PersonalInformation
   	 birthdate=cad_aux
     end
   end
-  def literal(fecha)
-   		fecha.day.to_s +" "+ mes(fecha.month) +" "+ fecha.year.to_s
-   	end
+	  def literal(fecha)
+		stringDay=fecha.day.to_s
+   		stringDay +" "+ mes(fecha.month) +" "+ fecha.year.to_s
+	end
    	def mes(mesNumero)
    		case mesNumero
    		when 1
