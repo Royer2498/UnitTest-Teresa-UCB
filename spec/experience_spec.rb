@@ -26,13 +26,18 @@ describe 'Experience' do
 
   it "El metodo isThisYear deberia devolver true al recibir una fecha de fin perteneciente al anio actual" do
     experience = Experience.new
-    expect(experience.isThisMonth(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
+    expect(experience.isThisYear(Time.parse('2019-05-19 15:40:36 -0400'))).to eq true 
   end
   
 
   it "El metodo isThisYear deberia devolver false al recibir una fecha de fin que no pertene al anio actual" do
     experience = Experience.new
-    expect(experience.isThisMonth(Time.parse('2019-03-18 15:40:36 -0400'))).to eq false 
+    expect(experience.isThisYear(Time.parse('2018-03-17 15:40:36 -0400'))).to eq false 
+  end
+
+  it "El metodo finish_job_date deberia devolver false al recibir una fecha de fin que no pertene al anio actual" do
+    experience = Experience.new
+    expect(experience.finish_job_date(Time.parse('2019-05-17 15:40:36 -0400'), true)).to eq "Hasta la fecha" 
   end
 
   it "El metodo mes deberia devolver 'Enero' al recibir 1" do

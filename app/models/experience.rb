@@ -5,11 +5,11 @@ class Experience
 	def isThisMonth(end_date)
 		end_date.month==Time.now.month
 	end
-	def isThisYear
+	def isThisYear(end_date)
 		end_date.year==Time.now.year
    	end
-   	def finish_job_date
-   		if (isThisMonth and isThisYear) or until_now
+   	def finish_job_date(end_date, until_now)
+   		if (isThisMonth(end_date) and isThisYear(end_date)) or until_now
    			"Hasta la fecha"
    		else
    			literal(end_date)
