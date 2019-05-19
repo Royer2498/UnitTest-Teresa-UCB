@@ -1,5 +1,5 @@
 class Follow
-  def no_self
+  def no_self(follower,followed)
     follower!=followed
   end
   def user
