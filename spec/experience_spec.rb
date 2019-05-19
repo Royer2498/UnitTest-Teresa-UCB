@@ -45,6 +45,11 @@ describe 'Experience' do
     expect(experience.literal(Time.parse('2019-05-17 15:40:36 -0400'))).to eq "Mayo 2019" 
   end
 
+  it "El metodo start_job_date deberia devolver 'Mayo 2019' al recibir una fecha de fin que no pertene al anio actual" do
+    experience = Experience.new
+    expect(experience.start_job_date(Time.parse('2019-05-17 15:40:36 -0400'))).to eq "Mayo 2019" 
+  end
+
   it "El metodo mes deberia devolver 'Enero' al recibir 1" do
     experience = Experience.new
     expect(experience.mes(1)).to eq "Enero" 
